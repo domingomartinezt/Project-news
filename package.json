@@ -1,0 +1,21 @@
+{
+  "name": "final_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Domingo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "dateformat": "^2.0.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "moment": "^2.18.1",
+    "pg": "^6.2.4",
+    "semantic-ui": "^2.2.10",
+    "sequelize": "^4.1.0"
+  }
+}

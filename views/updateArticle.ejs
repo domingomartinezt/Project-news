@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="/semantic/dist/semantic.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <div class="ui middle aligned top grid">
+    <div class="sixteen wide red column">
+      <div class="ui container">
+        <div class="title1">PROJECT</div><div class="title2">NEWS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- menu -->
+  <div class="ui container">
+    <div class="ui red secondary pointing menu">
+      <a class="item active">
+        Article
+      </a>
+      <a href="/listAuthors" class="item">
+        Author
+      </a>
+      <div class="right menu">
+        <a href="/" class="ui item">
+          <i class="sign out icon"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="ui container main">
+    <div class="ui basic segment">
+
+      <h3 class="ui header">
+        <i class="options icon"></i>
+        <div class="content">
+          Update Article
+          <div class="sub header">Provide all the data to update the article.</div>
+        </div>
+      </h3>
+
+      <form class="ui form" method="post" action="/updateArticle">
+        <input type="hidden" name="id" value="<%= article.dataValues.id %>">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" name="title" placeholder="Title" value="<%= article.dataValues.title %>">
+        </div>
+        <div class="field">
+          <label>URL Image</label>
+          <input type="text" name="URL_image" placeholder="URL Image" value="<%= article.dataValues.URL_image %>">
+        </div>
+        <div class="field">
+          <label>Resume</label>
+          <textarea type="text" name="resume" placeholder="Resume" rows="3"><%= article.dataValues.resume %></textarea>
+        </div>
+        <div class="field">
+          <label>Body</label>
+          <textarea type="text" name="body" placeholder="Body"><%= article.dataValues.body %></textarea>
+        </div>
+        <div class="field">
+         <label>Category</label>
+         <select class="ui fluid dropdown" name="category">
+           <option selected value="<%= article.dataValues.category %>"><%= article.dataValues.category %></option>
+           <option value="Coding">Coding</option>
+           <option value="Hardware">Hardware</option>
+           <option value="Mobile">Mobile</option>
+          </select>
+        </div>
+        <div class="field">
+         <label>Author</label>
+         <select class="ui fluid dropdown" name="id_author">
+           <option selected value="<%= article.dataValues.id_author %>"><%= article.dataValues.author.first_name+" "+article.dataValues.author.second_name %></option>
+           <% for(var i=0; i < authors.length; i++){ %>
+             <option value="<%= authors[i].dataValues.id %>"><%= authors[i].dataValues.first_name +" "+authors[i].dataValues.second_name %></option>
+           <% } %>
+          </select>
+        </div>
+        <div class="field">
+          <div class="ui slider checkbox">
+            <% if(article.dataValues.active){ %>
+              <input type="checkbox" name="active" checked="checked"><label>Active</label>
+            <% }else{ %>
+              <input type="checkbox" name="active"><label>Active</label>
+            <% } %>
+          </div>
+        </div>
+        <button class="ui button" type="submit">Submit</button>
+        <a href="/listArticles"><button class="ui button" type="button">Cancel</button></a>
+      </form>
+      <br>
+    </div>
+
+  </div>
+
+  <!-- footer -->
+  <div class="ui vertical footer red segment">
+    <div class="ui container">
+      <div class="ui stackable divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui red header">Author</h4>
+          <div class="ui link list">
+            <a href="#" class="item">Domingo Martinez</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui red header">Technologies</h4>
+          <div class="ui link list">
+            <a href="#" class="item">Javascipt</a>
+            <a href="#" class="item">Semantic UI</a>
+            <a href="#" class="item">JQuery</a>
+            <a href="#" class="item">Node JS</a>
+            <a href="#" class="item">Postgres</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui red header">Features</h4>
+          <p class="paragrap gray">This is an API player for the page Free Music Archive, as part of the work assignment for the TPP training program at Queens College.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script>
+
+</script>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="/semantic/dist/semantic.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <div class="ui middle aligned top grid">
+    <div class="sixteen wide red column">
+      <div class="ui container">
+        <div class="title1">PROJECT</div><div class="title2">NEWS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- menu -->
+  <div class="ui container">
+    <div class="ui red secondary pointing menu">
+      <a class="item active">
+        Coding
+      </a>
+      <a class="item">
+        Hardware
+      </a>
+      <a class="item">
+        Mobile
+      </a>
+      <div class="right menu">
+        <a href="listArticles" class="ui item">
+          <i class="options icon"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="ui container main">
+    <div class="ui two columns grid">
+      <!-- left content -->
+      <div class="eleven wide column">
+
+        <% for(var i=0; i < articles.length; i++){ %>
+        <div class="ui vertical segment main">
+        <div class="thumbs"><%= articles[i].dataValues.thumbs_up %><i class="thumbs outline down icon"></i></div>
+        <div class="thumbs"><%= articles[i].dataValues.thumbs_down %><i class="thumbs outline up icon"></i></div>
+        <img class="ui medium left floated image" src="<%= articles[i].dataValues.URL_image %>">
+        <div class="ui medium header"><%= articles[i].dataValues.title %>
+          <div class="sub header"><span class="date red"><%= articles[i].dataValues.createdAt.toDateString() %></span> by <%= articles[i].dataValues.author.first_name+" "+articles[i].dataValues.author.second_name %></div>
+        </div>
+        <span><%= articles[i].dataValues.resume %></span>
+        </div>
+        <% } %>
+
+        <div class="ui vertical segment">
+        <div class="thumbs">54<i class="thumbs outline down icon"></i></div>
+        <div class="thumbs">9<i class="thumbs outline up icon"></i></div>
+        <img class="ui medium left floated image" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
+        <div class="ui medium header">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <div class="sub header"><span class="date red">6/17/2017</span> by domingo martinez.</div>
+        </div>
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        </div>
+
+        <div class="ui vertical segment">
+        <div class="thumbs">54<i class="thumbs outline down icon"></i></div>
+        <div class="thumbs">9<i class="thumbs outline up icon"></i></div>
+        <img class="ui medium left floated image" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
+        <div class="ui medium header">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <div class="sub header"><span class="date red">6/17/2017</span> by domingo martinez.</div>
+        </div>
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        </div>
+
+      </div>
+
+      <!-- rigth content -->
+      <div class="five wide column">
+        <h5 class="ui horizontal divider header">FEATURED CONTENT</h5>
+
+        <% for(var i=0; i < featured.length; i++){ %>
+        <div class="ui vertical segment">
+        <img class="ui left floated image side" src="<%= featured[i].dataValues.URL_image %>">
+        <p><%= featured[i].dataValues.title %></p>
+        </div>
+        <% } %>
+
+        <div class="ui vertical segment">
+        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <div class="ui vertical segment">
+        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <h5 class="ui horizontal divider header">TOP RATED</h5>
+
+        <div class="ui vertical segment">
+        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <div class="ui vertical segment">
+        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <div class="ui vertical segment">
+        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- footer -->
+  <div class="ui vertical footer red segment">
+    <div class="ui container">
+      <div class="ui stackable divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui red header">Author</h4>
+          <div class="ui link list">
+            <a href="#" class="item">Domingo Martinez</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui red header">Technologies</h4>
+          <div class="ui link list">
+            <a href="#" class="item">Javascipt</a>
+            <a href="#" class="item">Semantic UI</a>
+            <a href="#" class="item">JQuery</a>
+            <a href="#" class="item">Node JS</a>
+            <a href="#" class="item">Postgres</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui red header">Features</h4>
+          <p class="paragrap gray">This is an API player for the page Free Music Archive, as part of the work assignment for the TPP training program at Queens College.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
