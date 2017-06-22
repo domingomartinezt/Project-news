@@ -46,36 +46,25 @@
       <div class="eleven wide column">
 
         <% for(var i=0; i < articles.length; i++){ %>
-        <div class="ui vertical segment main">
-        <div class="thumbs"><%= articles[i].dataValues.thumbs_up %><i class="thumbs outline down icon"></i></div>
-        <div class="thumbs"><%= articles[i].dataValues.thumbs_down %><i class="thumbs outline up icon"></i></div>
+        <div class="ui vertical segment">
+        <div class="thumbs">
+          <span class="tDown"><%= articles[i].dataValues.thumbs_down %></span>
+          <i class="thumbs outline down link icon" onclick="thumbsDown(<%= articles[i].dataValues.id %>, <%= i %>)"></i>
+        </div>
+        <div class="thumbs">
+          <span class="tUp"><%= articles[i].dataValues.thumbs_up %></span>
+          <i class="thumbs outline up link icon" onclick="thumbsUp(<%= articles[i].dataValues.id %>, <%= i %>)"></i>
+        </div>
         <img class="ui medium left floated image" src="<%= articles[i].dataValues.URL_image %>">
         <div class="ui medium header"><%= articles[i].dataValues.title %>
-          <div class="sub header"><span class="date red"><%= articles[i].dataValues.createdAt.toDateString() %></span> by <%= articles[i].dataValues.author.first_name+" "+articles[i].dataValues.author.second_name %></div>
+          <div class="sub header">
+            <span class="date red"><%= articles[i].dataValues.createdAt.toDateString() %></span>
+              by <%= articles[i].dataValues.author.first_name+" "+articles[i].dataValues.author.second_name %>
+          </div>
         </div>
         <span><%= articles[i].dataValues.resume %></span>
         </div>
         <% } %>
-
-        <div class="ui vertical segment">
-        <div class="thumbs">54<i class="thumbs outline down icon"></i></div>
-        <div class="thumbs">9<i class="thumbs outline up icon"></i></div>
-        <img class="ui medium left floated image" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
-        <div class="ui medium header">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          <div class="sub header"><span class="date red">6/17/2017</span> by domingo martinez.</div>
-        </div>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-        </div>
-
-        <div class="ui vertical segment">
-        <div class="thumbs">54<i class="thumbs outline down icon"></i></div>
-        <div class="thumbs">9<i class="thumbs outline up icon"></i></div>
-        <img class="ui medium left floated image" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
-        <div class="ui medium header">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          <div class="sub header"><span class="date red">6/17/2017</span> by domingo martinez.</div>
-        </div>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-        </div>
 
       </div>
 
@@ -90,32 +79,14 @@
         </div>
         <% } %>
 
-        <div class="ui vertical segment">
-        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-
-        <div class="ui vertical segment">
-        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-
         <h5 class="ui horizontal divider header">TOP RATED</h5>
 
+        <% for(var i=0; i < rated.length; i++){ %>
         <div class="ui vertical segment">
-        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <img class="ui left floated image side" src="<%= rated[i].dataValues.URL_image %>">
+        <p><%= rated[i].dataValues.title %></p>
         </div>
-
-        <div class="ui vertical segment">
-        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-
-        <div class="ui vertical segment">
-        <img class="ui left floated image side" src="http://lorempixel.com/output/technics-q-c-640-480-7.jpg">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
+        <% } %>
 
       </div>
 
@@ -152,5 +123,32 @@
   </div>
 
 </body>
+
+<script>
+
+function thumbsUp(id, idx){
+  $.ajax({
+    type: "POST",
+    url: "/thumbsUp",
+    data: {id: id},
+    success: function (val) {
+      $('.tUp')[idx].innerHTML= val;
+    }
+  });
+}
+
+function thumbsDown(id, idx){
+  $.ajax({
+    type: "POST",
+    url: "/thumbsDown",
+    data: {id: id},
+    success: function (val) {
+      $('.tDpwn')[idx].innerHTML= val;
+    }
+  });
+}
+
+
+</script>
 
 </html>

@@ -57,8 +57,9 @@
   float: right;
 }
 
-.ui.vertical.segment.main{
-  min-height: 232px;
+.ui.vertical.segment{
+  clear: both;
+  overflow:auto;
 }
 
 .ui.floated.image{

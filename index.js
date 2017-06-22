@@ -15,6 +15,29 @@ app.set('views', './views');
 //sets this application to use post routing
 
 
+
+// Activate-desactive an article
+app.post('/thumbsUp', function(request,response){
+  console.log(request.body.id);
+  sequelize.sync().then(function(){
+    Article.findById(request.body.id).then(article => {
+      article.increment('thumbs_up');
+      return response.json(article.dataValues.thumbs_up + 1);
+    })
+  });
+});
+
+app.post('/thumbsDown', function(request,response){
+  console.log(request.body.id);
+  sequelize.sync().then(function(){
+    Article.findById(request.body.id).then(article => {
+      article.increment('thumbs_down');
+      return response.json(article.dataValues.thumbs_down + 1);
+    })
+  });
+});
+
+
 // Get all the messages
 app.get('/', function(request,response){
   sequelize.Promise.all([
