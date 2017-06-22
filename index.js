@@ -18,7 +18,6 @@ app.set('views', './views');
 
 // Activate-desactive an article
 app.post('/thumbsUp', function(request,response){
-  console.log(request.body.id);
   sequelize.sync().then(function(){
     Article.findById(request.body.id).then(article => {
       article.increment('thumbs_up');
@@ -28,7 +27,6 @@ app.post('/thumbsUp', function(request,response){
 });
 
 app.post('/thumbsDown', function(request,response){
-  console.log(request.body.id);
   sequelize.sync().then(function(){
     Article.findById(request.body.id).then(article => {
       article.increment('thumbs_down');
@@ -41,8 +39,12 @@ app.post('/thumbsDown', function(request,response){
 // Call the form to update an article
 app.get('/article/:id', function(request,response){
   sequelize.sync().then(function(){
+    Article.findById(request.params.id).then(article => {
+      article.increment('visits');
+    })
+  });
+  sequelize.sync().then(function(){
     Article.findById(request.params.id, {include: [Author]}).then(article => {
-      console.log(article);
       response.render('article',{article: article});
     })
   });
