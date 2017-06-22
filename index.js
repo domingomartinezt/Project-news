@@ -42,8 +42,8 @@ app.post('/thumbsDown', function(request,response){
 app.get('/', function(request,response){
   sequelize.Promise.all([
     Article.findAll({where: {active: true}, include: [Author]}),
-    Article.findAll({where: {active: true}, include: [Author], order:['visits'], limit :5}),
-    Article.findAll({where: {active: true}, include: [Author], order:['thumbs_up'], limit :5})])
+    Article.findAll({where: {active: true}, include: [Author], order:[['visits','DESC']], limit :5}),
+    Article.findAll({where: {active: true}, include: [Author], order:[['thumbs_up','DESC']], limit :5})])
     .spread(function(articles, featured, rated) {
       response.render('main',{articles: articles, featured: featured, rated: rated});
   });
