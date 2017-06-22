@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-   "node": "8.1.2"
+    "node": "8.1.2"
   },
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "dateformat": "^2.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
+    "gulp": "^3.9.1",
     "moment": "^2.18.1",
     "pg": "^6.2.4",
     "semantic-ui": "^2.2.10",
