@@ -245,7 +245,7 @@ Author.hasMany(Article, {onDelete: 'CASCADE', onUpdate:'RESTRICT'});
 
 
 // Force sync all models
- sequelize.sync({force: true});
+// sequelize.sync({force: true});
 
 
 app.listen(process.env.PORT, function(){
