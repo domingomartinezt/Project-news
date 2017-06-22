@@ -7,7 +7,11 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(express.static('public'));
 //connect to a database
-var connetionString = 'postgres://'+process.env.POSTGRES_USER+':'+process.env.POSTGRES_PASSWORD+'@localhost/project_news';
+if (process.env.POSTGRES_USER){
+  var connetionString = 'postgres://'+process.env.POSTGRES_USER+':'+process.env.POSTGRES_PASSWORD+'@localhost/project_news';
+}else{
+  var connetionString = process.env.DATABASE_URL;
+}
 //set the view engine to hbs for handlebars, ejs for ejs, or pug for pug
 app.set('view engine', 'ejs');
 //sets this application to look at `my-views` next to the running application
@@ -241,7 +245,7 @@ Author.hasMany(Article, {onDelete: 'CASCADE', onUpdate:'RESTRICT'});
 
 
 // Force sync all models
-// sequelize.sync({force: true});
+ sequelize.sync({force: true});
 
 
 app.listen(3005, function(){
