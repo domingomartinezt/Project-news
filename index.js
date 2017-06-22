@@ -38,6 +38,17 @@ app.post('/thumbsDown', function(request,response){
 });
 
 
+// Call the form to update an article
+app.get('/article/:id', function(request,response){
+  sequelize.sync().then(function(){
+    Article.findById(request.params.id, {include: [Author]}).then(article => {
+      console.log(article);
+      response.render('article',{article: article});
+    })
+  });
+});
+
+
 // Get all the messages
 app.get('/', function(request,response){
   sequelize.Promise.all([

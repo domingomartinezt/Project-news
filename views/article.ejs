@@ -43,56 +43,28 @@
   <div class="ui container main">
     <div class="ui two columns grid">
       <!-- left content -->
-      <div class="eleven wide column">
-
-        <% for(var i=0; i < articles.length; i++){ %>
-        <div class="ui vertical segment">
+      <div class="sixteen wide column">
+        <div class="ui basic segment">
         <div class="thumbs">
-          <span class="tDown"><%= articles[i].dataValues.thumbs_down %></span>
-          <i class="thumbs outline down link icon" onclick="thumbsDown(<%= articles[i].dataValues.id %>, <%= i %>)"></i>
+          <span class="tDown"><%= article.dataValues.thumbs_down %></span>
+          <i class="thumbs outline down link icon" onclick="thumbsDown(<%= article.dataValues.id %>)"></i>
         </div>
         <div class="thumbs">
-          <span class="tUp"><%= articles[i].dataValues.thumbs_up %></span>
-          <i class="thumbs outline up link icon" onclick="thumbsUp(<%= articles[i].dataValues.id %>, <%= i %>)"></i>
+          <span class="tUp"><%= article.dataValues.thumbs_up %></span>
+          <i class="thumbs outline up link icon" onclick="thumbsUp(<%= article.dataValues.id %>)"></i>
         </div>
-        <a href="article/<%= articles[i].dataValues.id %>">
-        <img class="ui medium left floated image" src="<%= articles[i].dataValues.URL_image %>">
-          <div class="ui medium header"><%= articles[i].dataValues.title %>
-            <div class="sub header">
-              <span class="date red"><%= articles[i].dataValues.createdAt.toDateString() %></span>
-                by <%= articles[i].dataValues.author.first_name+" "+articles[i].dataValues.author.second_name %>
-            </div>
+        <img class="ui medium left floated image" src="<%= article.dataValues.URL_image %>">
+        <div class="ui medium header"><%= article.dataValues.title %>
+          <div class="sub header">
+            <span class="date red"><%= article.dataValues.createdAt.toDateString() %></span>
+              by <%= article.dataValues.author.first_name+" "+article.dataValues.author.second_name %>
           </div>
-        </a>
-        <span><%= articles[i].dataValues.resume %></span>
         </div>
-        <% } %>
-
-      </div>
-
-      <!-- rigth content -->
-      <div class="five wide column">
-        <h5 class="ui horizontal divider header">FEATURED CONTENT</h5>
-
-        <% for(var i=0; i < featured.length; i++){ %>
-        <a href="article/<%= featured[i].dataValues.id %>">
-          <div class="ui vertical segment">
-          <img class="ui left floated image side" src="<%= featured[i].dataValues.URL_image %>">
-          <p><%= featured[i].dataValues.title %></p>
-          </div>
-        </a>
-        <% } %>
-
-        <h5 class="ui horizontal divider header">TOP RATED</h5>
-
-        <% for(var i=0; i < rated.length; i++){ %>
-        <a href="article/<%= rated[i].dataValues.id %>">
-          <div class="ui vertical segment">
-          <img class="ui left floated image side" src="<%= rated[i].dataValues.URL_image %>">
-          <p><%= rated[i].dataValues.title %></p>
-          </div>
-        </a>
-        <% } %>
+        <span><%= article.dataValues.resume %></span>
+        <br>
+        <br>
+        <p><%= article.dataValues.body %></p>
+        </div>
 
       </div>
 
@@ -132,24 +104,24 @@
 
 <script>
 
-function thumbsUp(id, idx){
+function thumbsUp(id){
   $.ajax({
     type: "POST",
     url: "/thumbsUp",
     data: {id: id},
     success: function (val) {
-      $('.tUp')[idx].innerHTML= val;
+      $('.tUp').innerHTML= val;
     }
   });
 }
 
-function thumbsDown(id, idx){
+function thumbsDown(id){
   $.ajax({
     type: "POST",
     url: "/thumbsDown",
     data: {id: id},
     success: function (val) {
-      $('.tDpwn')[idx].innerHTML= val;
+      $('.tDpwn').innerHTML= val;
     }
   });
 }

@@ -43,6 +43,7 @@
 
 .image.side{
   width: 90px;
+  margin-bottom: 0em;
 }
 
 .paragrap.gray{
@@ -64,4 +65,8 @@
 
 .ui.floated.image{
   margin-bottom: 0em;
+}
+
+a{
+  color: black;
 }
