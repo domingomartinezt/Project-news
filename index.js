@@ -248,6 +248,6 @@ Author.hasMany(Article, {onDelete: 'CASCADE', onUpdate:'RESTRICT'});
  sequelize.sync({force: true});
 
 
-app.listen(PORT, function(){
+app.listen(process.env.PORT, function(){
  console.log('Listing on port no. 3005');
 });
