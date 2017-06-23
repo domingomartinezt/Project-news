@@ -70,7 +70,7 @@ app.get('/', function(request,response){
 // Show the list of all the articles created
 app.get('/listArticles', function(request,response){
   sequelize.sync().then(function(){
-    Article.findAll().then(articles => {
+    Article.findAll({include: [Author]}).then(articles => {
       response.render('listArticles',{articles: articles});
     })
   });
