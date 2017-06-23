@@ -58,7 +58,7 @@ app.get('/article/:id', function(request,response){
 // Get all the messages
 app.get('/', function(request,response){
   sequelize.Promise.all([
-    Article.findAll({where: {active: true}, include: [Author]}),
+    Article.findAll({where: {active: true}, include: [Author], order:[['createdAt','DESC']]}),
     Article.findAll({where: {active: true}, include: [Author], order:[['visits','DESC']], limit :5}),
     Article.findAll({where: {active: true}, include: [Author], order:[['thumbs_up','DESC']], limit :5})])
     .spread(function(articles, featured, rated) {
